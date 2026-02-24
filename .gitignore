@@ -3,7 +3,7 @@
 .history
 
 # build
-build/
+/build/
 
 # notes
 *.txt
