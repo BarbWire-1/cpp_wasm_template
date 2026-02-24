@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>C++ WASM Template</title>
+</head>
+
+<body>
+	<h1>C++ WASM Test</h1>
+	<button id="run">Say Hello</button>
+	<pre id="output"></pre>
+
+	<script type="module">
+		import createModule from "../build/hello.js";
+
+		const output = document.getElementById("output");
+
+		createModule().then(Module => {
+			document.getElementById("run").onclick = () => {
+				const ptr = Module._say_hello();
+				const str = Module.UTF8ToString(ptr);
+				output.textContent = str;
+			};
+		});
+		// python3 -m http.server 8000
+		// http://localhost:8000/your-html-file.html
+	</script>
+</body>
+
+</html>
